@@ -173,48 +173,77 @@ fun CreateAccBtn(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun NextBtn(modifier: Modifier = Modifier) {
+    Button(
+        onClick = { /* Handle click */ },
+        colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+        contentPadding = PaddingValues(), // Allows the image to fill the button space
+        modifier = modifier
+            .padding(bottom = 50.dp)
+            .paint(
+                painter = painterResource(id = R.drawable.gradient_button_background),
+                contentScale = ContentScale.FillBounds
+            )
+    ) {
+        Text(
+            text = "Next",
+            color = Color.Black,
+            fontSize = 23.sp,
+            modifier = Modifier.padding(horizontal = 40.dp, vertical = 12.dp)
+        )
+    }
+}
+
 @Preview
 @Composable
 fun CreateAccountPreview() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+    ) {
+        RegisterBanner()
+        RegisterColumn(Modifier.padding(top = 100.dp))
+        NextBtn(Modifier
+            .padding(horizontal = 30.dp)
+            .align(Alignment.BottomCenter))
+    }
 
-    RegisterColumn()
 
 }
 
 @Composable
 fun RegisterBanner(modifier: Modifier = Modifier) {
-    Row(
+    Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
     ) {
-        Button(
-            onClick = { /* Handle click */ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-            contentPadding = PaddingValues(), // Allows the image to fill the button space
+        Row(
             modifier = modifier
-                .padding(bottom = 50.dp)
-                .paint(
-                    painter = painterResource(id = R.drawable.gradient_button_background),
-                    contentScale = ContentScale.FillBounds
-                )
+                .fillMaxWidth()
+                .padding(20.dp),
+            //horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+            Button(
+                onClick = { /* Handle click */ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+            ) {
+                Text(
+                    text = "< Return",
+                    color = Color.White,
+                    fontSize = 20.sp
+                )
+            }
+            Spacer(modifier = Modifier.width(12.dp))
             Text(
-                text = "Return",
-                color = Color.Black,
-                fontSize = 23.sp,
-                modifier = Modifier.padding(horizontal = 40.dp, vertical = 12.dp)
+                text = "Create an account",
+                color = Color.White,
+                fontSize = 25.sp,
+                fontFamily = FontFamily.SansSerif
             )
         }
-        Spacer(modifier = Modifier.width(12.dp))
-        Text(
-            text = "Create an account",
-            color = Color.White,
-            fontSize = 16.sp,
-            fontFamily = FontFamily.SansSerif
-        )
     }
 }
 
@@ -234,13 +263,15 @@ fun RegisterColumn(modifier: Modifier = Modifier) {
             fontSize = 20.sp,
             modifier = Modifier
                 .align(Alignment.Start)
-                .padding(start = 40.dp)
+                .padding(start = 40.dp, bottom = 10.dp)
 
         )
         TextField(
             label = {Text("johndoe@gmail.com")},
             value = "",
-            onValueChange = {}
+            onValueChange = {},
+            modifier = Modifier
+                .padding(bottom = 30.dp)
         )
 
         Text(
@@ -249,27 +280,39 @@ fun RegisterColumn(modifier: Modifier = Modifier) {
             fontSize = 20.sp ,
             modifier = Modifier
                 .align(Alignment.Start)
-                .padding(start = 40.dp)
+                .padding(start = 40.dp, bottom = 10.dp)
 
         )
         TextField(
             label = {Text("See criteria below")},
             value = "",
-            onValueChange = {}
+            onValueChange = {},
+            modifier = Modifier
+                .padding(bottom = 30.dp)
         )
-
         Text(
             text = "Repeat password",
             color = Color.White,
             fontSize = 20.sp,
             modifier = Modifier
                 .align(Alignment.Start)
-                .padding(start = 40.dp)
+                .padding(start = 40.dp, bottom = 10.dp)
         )
         TextField(
             label = {Text("")},
             value = "",
-            onValueChange = {}
+            onValueChange = {},
+            modifier = Modifier
+                .padding(bottom = 30.dp)
         )
+        Text(
+            text = "Your password should have a minimum of 8 characters and contain at least one number, one uppercase and one lower case letter. You can use special characters.",
+            color = Color.White,
+            fontSize = 16.sp,
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(start = 40.dp, top = 150.dp, bottom = 10.dp)
+        )
+
     }
 }
