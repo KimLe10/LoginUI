@@ -135,8 +135,8 @@ fun RegisterScreen(onBackClick: () -> Unit) {
                     label = "Email address",
                     value = email,
                     placeholder = "johndoe@gmail.com",
-                    onValueChange = { 
-                        email = it 
+                    onValueChange = { // runs everytime the user types/deletes a character in the textfield
+                        email = it  //
                         errorMessage = null
                     }
                 )
@@ -174,11 +174,14 @@ fun RegisterScreen(onBackClick: () -> Unit) {
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = errorMessage!!,
-                        color = Color.Red,
-                        fontSize = 14.sp
-                    )
+
+                    errorMessage?.let { message ->
+                        Text(
+                            text = message,
+                            color = Color.Red,
+                            fontSize = 14.sp
+                        )
+                    }
                 }
             }
 
@@ -209,7 +212,7 @@ fun RegisterScreen(onBackClick: () -> Unit) {
                         }
                         else -> {
                             errorMessage = null
-                            // Handle registration success
+                            // Go to next page
                         }
                     }
                 },
